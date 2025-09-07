@@ -18,10 +18,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 15%;
 
-    /* Primary: University Teal */
-    --primary: 180 100% 27%;
+    /* Primary: University Cyan */
+    --primary: 179 97% 50%;
     --primary-foreground: 0 0% 98%;
-    --primary-light: 180 50% 85%;
+    --primary-light: 179 50% 85%;
 
     /* Secondary: Academic Cream */
     --secondary: 45 25% 94%;
@@ -39,10 +39,10 @@ All colors MUST be HSL.
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 180 100% 27%;
+    --ring: 179 97% 50%;
 
     /* Custom university colors */
-    --university-teal: 180 100% 27%;
+    --university-teal: 179 97% 50%;
     --university-red: 0 70% 45%;
     --academic-cream: 45 25% 94%;
     --text-dark: 220 20% 15%;
@@ -85,9 +85,9 @@ All colors MUST be HSL.
     --popover: 220 20% 12%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 180 100% 35%;
+    --primary: 179 97% 60%;
     --primary-foreground: 220 25% 8%;
-    --primary-light: 180 50% 25%;
+    --primary-light: 179 50% 35%;
 
     --secondary: 220 15% 18%;
     --secondary-foreground: 0 0% 95%;
@@ -103,9 +103,9 @@ All colors MUST be HSL.
 
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 180 100% 35%;
+    --ring: 179 97% 60%;
 
-    --university-teal: 180 100% 35%;
+    --university-teal: 179 97% 60%;
     --university-red: 0 70% 55%;
     --academic-cream: 220 15% 18%;
     --text-dark: 0 0% 95%;
