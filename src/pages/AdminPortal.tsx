@@ -4,8 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Logo } from "@/components/ui/logo";
 import { ArrowLeft, Upload, Users, BookOpen, Settings, User, BarChart3, Database } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
+import { UploadProjectModal } from "@/components/modals/UploadProjectModal";
+import { MessageModal } from "@/components/modals/MessageModal";
 
 const AdminPortal = () => {
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  
   // Mock data for demonstration
   const systemStats = [
     { label: "Total Users", value: "1,247", icon: Users, trend: "+12%" },
@@ -141,7 +147,7 @@ const AdminPortal = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Add books, journals, and research papers to the repository
               </p>
-              <Button variant="university" className="w-full">
+              <Button variant="university" className="w-full" onClick={() => setShowUploadModal(true)}>
                 Upload New Material
               </Button>
             </CardContent>
@@ -154,8 +160,8 @@ const AdminPortal = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Add, edit, or remove user accounts and permissions
               </p>
-              <Button variant="cream" className="w-full">
-                User Management
+              <Button variant="cream" className="w-full" onClick={() => setShowMessageModal(true)}>
+                Message Users
               </Button>
             </CardContent>
           </Card>
@@ -188,7 +194,7 @@ const AdminPortal = () => {
                     Latest materials uploaded to the repository
                   </CardDescription>
                 </div>
-                <Button variant="university" size="sm">
+                <Button variant="university" size="sm" onClick={() => setShowUploadModal(true)}>
                   <Upload className="h-4 w-4 mr-2" />
                   Upload
                 </Button>
@@ -307,6 +313,16 @@ const AdminPortal = () => {
           </CardContent>
         </Card>
       </div>
+      
+      <UploadProjectModal 
+        isOpen={showUploadModal} 
+        onClose={() => setShowUploadModal(false)}
+      />
+      
+      <MessageModal 
+        isOpen={showMessageModal} 
+        onClose={() => setShowMessageModal(false)} 
+      />
     </div>
   );
 };

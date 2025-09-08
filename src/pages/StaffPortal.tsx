@@ -7,11 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthDialog } from "@/components/auth/AuthDialog";
+import { MessageModal } from "@/components/modals/MessageModal";
 import { getProjectsBySupervisor, getCitationsBySupervisor } from "@/lib/localStorage";
 import type { Project, Citation } from "@/lib/localStorage";
 
 const StaffPortal = () => {
   const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
   const [projects, setProjects] = useState<Project[]>([]);
   const [citations, setCitations] = useState<Citation[]>([]);
   
@@ -86,10 +88,21 @@ const StaffPortal = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <FileCheck className="h-5 w-5" />
-                  Supervised Projects
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center gap-2">
+                      <FileCheck className="h-5 w-5" />
+                      Supervised Projects
+                    </CardTitle>
+                    <CardDescription>
+                      Monitor and guide your assigned students' projects
+                    </CardDescription>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={() => setShowMessageModal(true)}>
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    Message Students
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8">
@@ -103,6 +116,9 @@ const StaffPortal = () => {
                   <CheckCircle className="h-5 w-5" />
                   Citation Validations
                 </CardTitle>
+                <CardDescription>
+                  Review and validate student citations
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8">
@@ -117,6 +133,11 @@ const StaffPortal = () => {
       <AuthDialog 
         isOpen={showAuthDialog} 
         onClose={() => setShowAuthDialog(false)} 
+      />
+      
+      <MessageModal 
+        isOpen={showMessageModal} 
+        onClose={() => setShowMessageModal(false)} 
       />
     </div>
   );

@@ -4,15 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/ui/logo";
-import { Search, Upload, BookOpen, ArrowLeft, User, FileText, Download, LogOut } from "lucide-react";
+import { Search, Upload, BookOpen, ArrowLeft, User, FileText, Download, LogOut, MessageSquare } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthDialog } from "@/components/auth/AuthDialog";
+import { UploadProjectModal } from "@/components/modals/UploadProjectModal";
+import { SearchModal } from "@/components/modals/SearchModal";
+import { MessageModal } from "@/components/modals/MessageModal";
 import { getMaterials, searchMaterials, getProjectsByStudent, incrementMaterialDownload } from "@/lib/localStorage";
 import type { Material, Project } from "@/lib/localStorage";
 
 const StudentPortal = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
   const [materials, setMaterials] = useState<Material[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
@@ -50,6 +56,13 @@ const StudentPortal = () => {
     setFilteredMaterials(prev => prev.map(m => 
       m.id === materialId ? { ...m, downloads: m.downloads + 1 } : m
     ));
+  };
+
+  const refreshProjects = () => {
+    if (user && user.id) {
+      const userProjects = getProjectsByStudent(user.id);
+      setProjects(userProjects);
+    }
   };
 
   return (
@@ -197,7 +210,7 @@ const StudentPortal = () => {
                     Track your project submissions and supervisor feedback
                   </CardDescription>
                 </div>
-                <Button variant="university" size="sm">
+                <Button variant="university" size="sm" onClick={() => setShowUploadModal(true)}>
                   <Upload className="h-4 w-4 mr-2" />
                   Upload Project
                 </Button>
@@ -250,7 +263,7 @@ const StudentPortal = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Use filters to find specific research materials
               </p>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => setShowSearchModal(true)}>
                 Search Now
               </Button>
             </CardContent>
@@ -263,7 +276,7 @@ const StudentPortal = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Upload your completed project for review
               </p>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => setShowUploadModal(true)}>
                 Upload
               </Button>
             </CardContent>
@@ -276,7 +289,7 @@ const StudentPortal = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Communicate with your project supervisor
               </p>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => setShowMessageModal(true)}>
                 Message
               </Button>
             </CardContent>
@@ -287,6 +300,22 @@ const StudentPortal = () => {
       <AuthDialog 
         isOpen={showAuthDialog} 
         onClose={() => setShowAuthDialog(false)} 
+      />
+      
+      <UploadProjectModal 
+        isOpen={showUploadModal} 
+        onClose={() => setShowUploadModal(false)}
+        onProjectUploaded={refreshProjects}
+      />
+      
+      <SearchModal 
+        isOpen={showSearchModal} 
+        onClose={() => setShowSearchModal(false)} 
+      />
+      
+      <MessageModal 
+        isOpen={showMessageModal} 
+        onClose={() => setShowMessageModal(false)} 
       />
     </div>
   );

@@ -88,6 +88,22 @@ export const deleteProject = (projectId: string): void => {
   localStorage.setItem('projects', JSON.stringify(projects));
 };
 
+export const addProject = (projectData: Omit<Project, 'id' | 'createdAt' | 'updatedAt' | 'files' | 'citations'>): Project => {
+  const projects = getProjects();
+  const newProject: Project = {
+    ...projectData,
+    id: crypto.randomUUID(),
+    files: [],
+    citations: [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  
+  projects.push(newProject);
+  localStorage.setItem('projects', JSON.stringify(projects));
+  return newProject;
+};
+
 // Material Management
 export const saveMaterial = (material: Material): void => {
   const materials = getMaterials();
