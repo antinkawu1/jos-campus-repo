@@ -1,53 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/ui/logo";
-import { Search, Upload, BookOpen, ArrowLeft, User, FileText, Download } from "lucide-react";
+import { Search, Upload, BookOpen, ArrowLeft, User, FileText, Download, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthDialog } from "@/components/auth/AuthDialog";
+import { getMaterials, searchMaterials, getProjectsByStudent, incrementMaterialDownload } from "@/lib/localStorage";
+import type { Material, Project } from "@/lib/localStorage";
 
 const StudentPortal = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [materials, setMaterials] = useState<Material[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
+  
+  const { user, logout, isAuthenticated } = useAuth();
 
-  // Mock data for demonstration
-  const recentMaterials = [
-    {
-      title: "Advanced Data Structures and Algorithms",
-      type: "Book",
-      author: "Dr. Johnson Smith",
-      year: "2023",
-      downloads: 234
-    },
-    {
-      title: "Machine Learning Applications in Agriculture",
-      type: "Journal Article", 
-      author: "Prof. Mary Adebayo",
-      year: "2024",
-      downloads: 156
-    },
-    {
-      title: "Sustainable Development in Nigeria",
-      type: "Research Paper",
-      author: "Dr. Ibrahim Hassan", 
-      year: "2023",
-      downloads: 89
-    }
-  ];
+  useEffect(() => {
+    // Load materials
+    const allMaterials = getMaterials();
+    setMaterials(allMaterials);
+    setFilteredMaterials(allMaterials.slice(0, 5)); // Show latest 5
 
-  const myProjects = [
-    {
-      title: "IoT-Based Smart Irrigation System",
-      status: "In Progress",
-      supervisor: "Dr. Sarah Johnson",
-      lastUpdated: "2 days ago"
-    },
-    {
-      title: "Mobile Health App for Rural Communities", 
-      status: "Under Review",
-      supervisor: "Prof. Michael Brown",
-      lastUpdated: "1 week ago"
+    // Load user's projects if authenticated
+    if (user && user.id) {
+      const userProjects = getProjectsByStudent(user.id);
+      setProjects(userProjects);
     }
-  ];
+  }, [user]);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      const results = searchMaterials(searchQuery);
+      setFilteredMaterials(results);
+    } else {
+      setFilteredMaterials(materials.slice(0, 5));
+    }
+  };
+
+  const handleDownload = (materialId: string) => {
+    incrementMaterialDownload(materialId);
+    // Update local state
+    setMaterials(prev => prev.map(m => 
+      m.id === materialId ? { ...m, downloads: m.downloads + 1 } : m
+    ));
+    setFilteredMaterials(prev => prev.map(m => 
+      m.id === materialId ? { ...m, downloads: m.downloads + 1 } : m
+    ));
+  };
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -69,34 +72,44 @@ const StudentPortal = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Welcome, Student</span>
-              <Button variant="university" size="sm">
-                <User className="h-4 w-4 mr-2" />
-                Login Required
-              </Button>
+              {isAuthenticated ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Welcome, {user?.name}</span>
+                  <Button variant="ghost" size="sm" onClick={logout}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="university" size="sm" onClick={() => setShowAuthDialog(true)}>
+                  <User className="h-4 w-4 mr-2" />
+                  Login
+                </Button>
+              )}
             </div>
           </div>
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Authentication Notice */}
-        <Card className="mb-8 border-university-teal bg-primary-light">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <h3 className="text-lg font-semibold text-university-teal mb-2">
-                Authentication Required
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                To access full student features including project uploads and supervisor collaboration, 
-                you'll need to connect this app to Supabase for secure authentication.
-              </p>
-              <Button variant="university" size="sm">
-                Setup Authentication
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        {!isAuthenticated && (
+          <Card className="mb-8 border-university-teal bg-primary-light">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-university-teal mb-2">
+                  Login Required
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  To access full student features including project uploads and supervisor collaboration, 
+                  please log in with your student account.
+                </p>
+                <Button variant="university" size="sm" onClick={() => setShowAuthDialog(true)}>
+                  Login Now
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Search Section */}
         <Card className="mb-8">
@@ -120,7 +133,7 @@ const StudentPortal = () => {
                   className="pl-10"
                 />
               </div>
-              <Button variant="university">
+              <Button variant="university" onClick={handleSearch}>
                 Search
               </Button>
             </div>
@@ -140,8 +153,8 @@ const StudentPortal = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {recentMaterials.map((material, index) => (
-                <div key={index} className="p-4 border rounded-lg hover:shadow-elegant transition-shadow">
+              {filteredMaterials.map((material) => (
+                <div key={material.id} className="p-4 border rounded-lg hover:shadow-elegant transition-shadow">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground mb-1">{material.title}</h4>
@@ -158,7 +171,11 @@ const StudentPortal = () => {
                         </span>
                       </div>
                     </div>
-                    <Button variant="ghost" size="sm">
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={() => handleDownload(material.id)}
+                    >
                       <Download className="h-4 w-4" />
                     </Button>
                   </div>
@@ -187,28 +204,34 @@ const StudentPortal = () => {
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-              {myProjects.map((project, index) => (
-                <div key={index} className="p-4 border rounded-lg">
+              {projects.map((project) => (
+                <div key={project.id} className="p-4 border rounded-lg">
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-semibold text-foreground">{project.title}</h4>
                     <span className={`text-xs px-2 py-1 rounded ${
-                      project.status === 'In Progress' 
-                        ? 'bg-yellow-100 text-yellow-800' 
-                        : 'bg-blue-100 text-blue-800'
+                      project.status === 'draft' 
+                        ? 'bg-gray-100 text-gray-800' 
+                        : project.status === 'submitted'
+                        ? 'bg-blue-100 text-blue-800'
+                        : project.status === 'under-review'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : project.status === 'approved'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-red-100 text-red-800'
                     }`}>
-                      {project.status}
+                      {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-1">
-                    Supervisor: {project.supervisor}
+                    {project.description}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    Last updated: {project.lastUpdated}
+                    Created: {new Date(project.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               ))}
               
-              {myProjects.length === 0 && (
+              {projects.length === 0 && (
                 <div className="text-center py-8 text-muted-foreground">
                   <FileText className="h-12 w-12 mx-auto mb-4 opacity-50" />
                   <p>No projects yet. Upload your first project to get started!</p>
@@ -260,6 +283,11 @@ const StudentPortal = () => {
           </Card>
         </div>
       </div>
+      
+      <AuthDialog 
+        isOpen={showAuthDialog} 
+        onClose={() => setShowAuthDialog(false)} 
+      />
     </div>
   );
 };

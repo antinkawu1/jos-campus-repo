@@ -3,11 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Logo } from "@/components/ui/logo";
 import { Input } from "@/components/ui/input";
-import { Search, BookOpen, Users, ShieldCheck, User } from "lucide-react";
+import { Search, BookOpen, Users, ShieldCheck, User, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthDialog } from "@/components/auth/AuthDialog";
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const { user, logout, isAuthenticated } = useAuth();
 
   const userTypes = [
     {
@@ -54,10 +58,22 @@ const HomePage = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm">
-                <User className="h-4 w-4 mr-2" />
-                Login
-              </Button>
+              {isAuthenticated ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">
+                    Welcome, {user?.name}
+                  </span>
+                  <Button variant="ghost" size="sm" onClick={logout}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="ghost" size="sm" onClick={() => setShowAuthDialog(true)}>
+                  <User className="h-4 w-4 mr-2" />
+                  Login
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -198,6 +214,11 @@ const HomePage = () => {
           </p>
         </div>
       </footer>
+      
+      <AuthDialog 
+        isOpen={showAuthDialog} 
+        onClose={() => setShowAuthDialog(false)} 
+      />
     </div>
   );
 };
