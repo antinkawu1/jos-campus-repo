@@ -34,13 +34,13 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
       }
 
       // Apply filters
-      if (type) {
+      if (type && type !== "all") {
         searchResults = searchResults.filter(material => 
           material.type.toLowerCase() === type.toLowerCase()
         );
       }
 
-      if (year) {
+      if (year && year !== "all") {
         searchResults = searchResults.filter(material => 
           material.year.toString() === year
         );
@@ -103,7 +103,7 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                   <SelectValue placeholder="All types" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="book">Book</SelectItem>
                   <SelectItem value="journal">Journal</SelectItem>
                   <SelectItem value="research paper">Research Paper</SelectItem>
@@ -120,7 +120,7 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                   <SelectValue placeholder="Any year" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Any Year</SelectItem>
+                  <SelectItem value="all">Any Year</SelectItem>
                   <SelectItem value="2024">2024</SelectItem>
                   <SelectItem value="2023">2023</SelectItem>
                   <SelectItem value="2022">2022</SelectItem>
