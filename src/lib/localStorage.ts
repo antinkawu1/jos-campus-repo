@@ -843,6 +843,592 @@ export const initializeSampleData = (): void => {
         downloads: 456,
         uploadedBy: 'admin',
         createdAt: new Date().toISOString()
+      },
+      // Additional Computer Science & Technology Materials
+      {
+        id: '53',
+        title: 'Python Programming for Data Science',
+        author: 'Dr. Michael Adebayo',
+        type: 'book',
+        year: '2024',
+        description: 'Complete guide to Python programming with focus on data science applications.',
+        keywords: ['python', 'programming', 'data science', 'coding', 'machine learning'],
+        downloads: 789,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '54',
+        title: 'React and Next.js Modern Web Development',
+        author: 'Prof. Sarah Johnson',
+        type: 'book',
+        year: '2024',
+        description: 'Building modern web applications with React and Next.js framework.',
+        keywords: ['react', 'nextjs', 'web development', 'javascript', 'frontend'],
+        downloads: 654,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '55',
+        title: 'Cybersecurity in the Digital Age',
+        author: 'Dr. Ahmed Hassan',
+        type: 'journal',
+        year: '2024',
+        description: 'Contemporary cybersecurity threats and defense strategies.',
+        keywords: ['cybersecurity', 'digital security', 'hacking', 'network security', 'encryption'],
+        downloads: 567,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '56',
+        title: 'Cloud Computing with AWS and Azure',
+        author: 'Prof. Jennifer Lee',
+        type: 'book',
+        year: '2024',
+        description: 'Comprehensive guide to cloud platforms and services.',
+        keywords: ['cloud computing', 'AWS', 'Azure', 'devops', 'infrastructure'],
+        downloads: 432,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '57',
+        title: 'Mobile App Development with Flutter and Dart',
+        author: 'Dr. Kemi Okafor',
+        type: 'book',
+        year: '2024',
+        description: 'Cross-platform mobile development using Flutter framework.',
+        keywords: ['flutter', 'dart', 'mobile development', 'android', 'ios'],
+        downloads: 398,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '58',
+        title: 'Deep Learning and Neural Networks',
+        author: 'Prof. David Chen',
+        type: 'book',
+        year: '2024',
+        description: 'Advanced deep learning techniques and neural network architectures.',
+        keywords: ['deep learning', 'neural networks', 'AI', 'machine learning', 'tensorflow'],
+        downloads: 723,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '59',
+        title: 'Data Structures and Algorithms in Java',
+        author: 'Dr. Mary Wilson',
+        type: 'book',
+        year: '2024',
+        description: 'Comprehensive guide to data structures and algorithms using Java.',
+        keywords: ['java', 'data structures', 'algorithms', 'programming', 'coding'],
+        downloads: 612,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '60',
+        title: 'Internet of Things and Smart Systems',
+        author: 'Prof. Emmanuel Dung',
+        type: 'book',
+        year: '2024',
+        description: 'IoT applications in smart homes, cities, and industrial systems.',
+        keywords: ['IoT', 'smart systems', 'sensors', 'automation', 'connectivity'],
+        downloads: 445,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '61',
+        title: 'Computer Graphics and Game Development',
+        author: 'Dr. Peter Yakubu',
+        type: 'book',
+        year: '2024',
+        description: 'Principles of computer graphics and game development techniques.',
+        keywords: ['computer graphics', 'game development', 'unity', '3D modeling', 'animation'],
+        downloads: 387,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '62',
+        title: 'Software Testing and Quality Assurance',
+        author: 'Prof. Grace Okwu',
+        type: 'book',
+        year: '2024',
+        description: 'Modern software testing methodologies and quality assurance practices.',
+        keywords: ['software testing', 'QA', 'automation testing', 'quality assurance', 'debugging'],
+        downloads: 534,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      // Engineering Materials
+      {
+        id: '63',
+        title: 'Mechanical Engineering Design Principles',
+        author: 'Prof. Joseph Mallo',
+        type: 'book',
+        year: '2024',
+        description: 'Fundamentals of mechanical design and engineering analysis.',
+        keywords: ['mechanical engineering', 'design', 'CAD', 'manufacturing', 'mechanics'],
+        downloads: 456,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '64',
+        title: 'Electrical Power Systems Analysis',
+        author: 'Dr. Blessing Pwantu',
+        type: 'book',
+        year: '2024',
+        description: 'Analysis and design of electrical power generation and distribution systems.',
+        keywords: ['electrical engineering', 'power systems', 'energy', 'transmission', 'distribution'],
+        downloads: 378,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '65',
+        title: 'Civil Engineering and Construction Management',
+        author: 'Prof. Daniel Gyang',
+        type: 'book',
+        year: '2024',
+        description: 'Project management and construction techniques in civil engineering.',
+        keywords: ['civil engineering', 'construction', 'project management', 'infrastructure', 'building'],
+        downloads: 423,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '66',
+        title: 'Chemical Process Engineering',
+        author: 'Dr. Ruth Yakubu',
+        type: 'book',
+        year: '2024',
+        description: 'Chemical process design and optimization in industrial applications.',
+        keywords: ['chemical engineering', 'process design', 'optimization', 'industrial chemistry', 'reactors'],
+        downloads: 345,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '67',
+        title: 'Environmental Engineering and Sustainability',
+        author: 'Prof. Martha Dalyop',
+        type: 'book',
+        year: '2024',
+        description: 'Environmental protection and sustainable engineering practices.',
+        keywords: ['environmental engineering', 'sustainability', 'pollution control', 'waste management', 'green technology'],
+        downloads: 512,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      // Business and Management
+      {
+        id: '68',
+        title: 'Project Management and Leadership',
+        author: 'Dr. Comfort Dogo',
+        type: 'book',
+        year: '2024',
+        description: 'Modern project management methodologies and leadership skills.',
+        keywords: ['project management', 'leadership', 'agile', 'scrum', 'management'],
+        downloads: 678,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '69',
+        title: 'Marketing in the Digital Era',
+        author: 'Prof. Tunde Bakare',
+        type: 'book',
+        year: '2024',
+        description: 'Digital marketing strategies and social media marketing techniques.',
+        keywords: ['digital marketing', 'social media', 'advertising', 'branding', 'online marketing'],
+        downloads: 589,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '70',
+        title: 'Financial Analysis and Investment',
+        author: 'Dr. Adaora Eze',
+        type: 'book',
+        year: '2024',
+        description: 'Financial analysis techniques and investment decision making.',
+        keywords: ['finance', 'investment', 'financial analysis', 'portfolio management', 'economics'],
+        downloads: 445,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '71',
+        title: 'Human Resources and Organizational Behavior',
+        author: 'Prof. Chioma Uche',
+        type: 'book',
+        year: '2024',
+        description: 'Modern HR practices and organizational psychology.',
+        keywords: ['human resources', 'HR', 'organizational behavior', 'management', 'psychology'],
+        downloads: 367,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '72',
+        title: 'Supply Chain and Operations Management',
+        author: 'Dr. Philip Dachung',
+        type: 'book',
+        year: '2024',
+        description: 'Supply chain optimization and operations management strategies.',
+        keywords: ['supply chain', 'operations management', 'logistics', 'procurement', 'optimization'],
+        downloads: 423,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      // Sciences - Physics, Chemistry, Biology
+      {
+        id: '73',
+        title: 'Quantum Physics and Modern Applications',
+        author: 'Prof. Bitrus Shuaibu',
+        type: 'book',
+        year: '2024',
+        description: 'Quantum mechanics principles and contemporary applications.',
+        keywords: ['quantum physics', 'quantum mechanics', 'physics', 'quantum computing', 'modern physics'],
+        downloads: 534,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '74',
+        title: 'Organic Chemistry Laboratory Techniques',
+        author: 'Dr. Moses Danladi',
+        type: 'book',
+        year: '2024',
+        description: 'Practical organic chemistry laboratory methods and techniques.',
+        keywords: ['organic chemistry', 'laboratory', 'chemistry', 'synthesis', 'analysis'],
+        downloads: 456,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '75',
+        title: 'Molecular Biology and Genetics',
+        author: 'Prof. Ruth Yakubu',
+        type: 'book',
+        year: '2024',
+        description: 'Advanced molecular biology techniques and genetic analysis.',
+        keywords: ['molecular biology', 'genetics', 'DNA', 'RNA', 'biotechnology'],
+        downloads: 612,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '76',
+        title: 'Biochemistry and Metabolism',
+        author: 'Dr. Mary Pam',
+        type: 'book',
+        year: '2024',
+        description: 'Biochemical processes and metabolic pathways in living organisms.',
+        keywords: ['biochemistry', 'metabolism', 'enzymes', 'proteins', 'cellular biology'],
+        downloads: 378,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '77',
+        title: 'Environmental Science and Ecology',
+        author: 'Prof. Daniel Gyang',
+        type: 'book',
+        year: '2024',
+        description: 'Environmental systems and ecological principles.',
+        keywords: ['environmental science', 'ecology', 'ecosystem', 'biodiversity', 'conservation'],
+        downloads: 445,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      // Medicine and Health Sciences
+      {
+        id: '78',
+        title: 'Anatomy and Physiology',
+        author: 'Dr. Stella Pwajok',
+        type: 'book',
+        year: '2024',
+        description: 'Human anatomy and physiological systems.',
+        keywords: ['anatomy', 'physiology', 'human body', 'medical', 'health'],
+        downloads: 723,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '79',
+        title: 'Pathology and Disease Diagnosis',
+        author: 'Prof. Emmanuel Choji',
+        type: 'book',
+        year: '2024',
+        description: 'Disease pathology and diagnostic techniques in medicine.',
+        keywords: ['pathology', 'diagnosis', 'disease', 'medical', 'clinical medicine'],
+        downloads: 567,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '80',
+        title: 'Pharmacology and Drug Therapy',
+        author: 'Dr. Rebecca Dung',
+        type: 'book',
+        year: '2024',
+        description: 'Pharmaceutical science and therapeutic drug applications.',
+        keywords: ['pharmacology', 'drugs', 'therapy', 'medicine', 'pharmaceuticals'],
+        downloads: 456,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '81',
+        title: 'Public Health and Epidemiology',
+        author: 'Prof. Comfort Pwantu',
+        type: 'book',
+        year: '2024',
+        description: 'Public health principles and epidemiological methods.',
+        keywords: ['public health', 'epidemiology', 'health policy', 'community health', 'prevention'],
+        downloads: 389,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      // Agriculture and Food Science
+      {
+        id: '82',
+        title: 'Crop Production and Plant Science',
+        author: 'Prof. Yakubu Dogon-Yaro',
+        type: 'book',
+        year: '2024',
+        description: 'Modern crop production techniques and plant biology.',
+        keywords: ['agriculture', 'crop production', 'plant science', 'farming', 'agronomy'],
+        downloads: 445,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '83',
+        title: 'Animal Husbandry and Livestock Management',
+        author: 'Dr. Hawa Muazu',
+        type: 'book',
+        year: '2024',
+        description: 'Livestock production and animal husbandry practices.',
+        keywords: ['animal husbandry', 'livestock', 'animal science', 'veterinary', 'farming'],
+        downloads: 367,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '84',
+        title: 'Food Technology and Processing',
+        author: 'Prof. Sunday Gyang',
+        type: 'book',
+        year: '2024',
+        description: 'Food processing technologies and preservation methods.',
+        keywords: ['food technology', 'food processing', 'preservation', 'nutrition', 'food safety'],
+        downloads: 523,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '85',
+        title: 'Soil Science and Fertility Management',
+        author: 'Dr. Victor Pam',
+        type: 'book',
+        year: '2024',
+        description: 'Soil chemistry, fertility, and sustainable soil management.',
+        keywords: ['soil science', 'soil fertility', 'agriculture', 'soil chemistry', 'land management'],
+        downloads: 298,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      // Mathematics and Statistics
+      {
+        id: '86',
+        title: 'Calculus and Mathematical Analysis',
+        author: 'Prof. Joseph Dung',
+        type: 'book',
+        year: '2024',
+        description: 'Advanced calculus and mathematical analysis techniques.',
+        keywords: ['calculus', 'mathematics', 'analysis', 'derivatives', 'integrals'],
+        downloads: 634,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '87',
+        title: 'Statistics and Data Analysis',
+        author: 'Dr. Rahila Muhammad',
+        type: 'book',
+        year: '2024',
+        description: 'Statistical methods and data analysis techniques.',
+        keywords: ['statistics', 'data analysis', 'probability', 'statistical modeling', 'research methods'],
+        downloads: 567,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '88',
+        title: 'Linear Algebra and Matrix Theory',
+        author: 'Prof. Samson Mancha',
+        type: 'book',
+        year: '2024',
+        description: 'Linear algebra concepts and matrix operations.',
+        keywords: ['linear algebra', 'matrices', 'vectors', 'mathematics', 'algebra'],
+        downloads: 445,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '89',
+        title: 'Discrete Mathematics and Logic',
+        author: 'Dr. Joy Kwanga',
+        type: 'book',
+        year: '2024',
+        description: 'Discrete mathematical structures and logical reasoning.',
+        keywords: ['discrete mathematics', 'logic', 'graph theory', 'combinatorics', 'mathematics'],
+        downloads: 389,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      // Social Sciences and Humanities
+      {
+        id: '90',
+        title: 'Psychology and Human Behavior',
+        author: 'Prof. Comfort Dogo',
+        type: 'book',
+        year: '2024',
+        description: 'Psychological principles and human behavioral patterns.',
+        keywords: ['psychology', 'behavior', 'cognitive psychology', 'mental health', 'social psychology'],
+        downloads: 512,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '91',
+        title: 'Sociology and Social Change',
+        author: 'Dr. Philip Dachung',
+        type: 'book',
+        year: '2024',
+        description: 'Sociological theories and social transformation processes.',
+        keywords: ['sociology', 'social change', 'society', 'social theory', 'community'],
+        downloads: 367,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '92',
+        title: 'Political Science and Governance',
+        author: 'Prof. Godwin Pam',
+        type: 'book',
+        year: '2024',
+        description: 'Political systems, governance, and public administration.',
+        keywords: ['political science', 'governance', 'politics', 'government', 'public administration'],
+        downloads: 423,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '93',
+        title: 'History and Cultural Studies',
+        author: 'Dr. Joy Kwanga',
+        type: 'book',
+        year: '2024',
+        description: 'Historical analysis and cultural studies methodology.',
+        keywords: ['history', 'culture', 'cultural studies', 'heritage', 'historical research'],
+        downloads: 298,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '94',
+        title: 'Economics and Development Theory',
+        author: 'Prof. Tunde Bakare',
+        type: 'book',
+        year: '2024',
+        description: 'Economic principles and development economics.',
+        keywords: ['economics', 'development', 'macroeconomics', 'microeconomics', 'economic policy'],
+        downloads: 445,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      // Education and Pedagogy
+      {
+        id: '95',
+        title: 'Educational Technology and E-Learning',
+        author: 'Dr. Samuel Pwaveno',
+        type: 'book',
+        year: '2024',
+        description: 'Technology integration in education and online learning platforms.',
+        keywords: ['educational technology', 'e-learning', 'online education', 'digital learning', 'education'],
+        downloads: 612,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '96',
+        title: 'Curriculum Development and Assessment',
+        author: 'Prof. Martha Dalyop',
+        type: 'book',
+        year: '2024',
+        description: 'Curriculum design principles and educational assessment methods.',
+        keywords: ['curriculum', 'assessment', 'education', 'teaching', 'learning'],
+        downloads: 456,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '97',
+        title: 'Special Education and Inclusive Learning',
+        author: 'Dr. Esther Davou',
+        type: 'book',
+        year: '2024',
+        description: 'Special education practices and inclusive classroom strategies.',
+        keywords: ['special education', 'inclusive education', 'learning disabilities', 'accessibility', 'education'],
+        downloads: 334,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      // Research Methodology and Academic Writing
+      {
+        id: '98',
+        title: 'Research Methodology and Design',
+        author: 'Prof. Yakubu Kigbu',
+        type: 'book',
+        year: '2024',
+        description: 'Research design principles and methodology for academic research.',
+        keywords: ['research methodology', 'research design', 'academic research', 'thesis', 'dissertation'],
+        downloads: 789,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '99',
+        title: 'Academic Writing and Publication',
+        author: 'Dr. Comfort Pwantu',
+        type: 'book',
+        year: '2024',
+        description: 'Academic writing skills and scholarly publication strategies.',
+        keywords: ['academic writing', 'publication', 'research paper', 'scholarly writing', 'thesis writing'],
+        downloads: 656,
+        uploadedBy: 'staff@unijos.edu.ng',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: '100',
+        title: 'Data Collection and Analysis Methods',
+        author: 'Prof. Bitrus Shuaibu',
+        type: 'book',
+        year: '2024',
+        description: 'Quantitative and qualitative data collection and analysis techniques.',
+        keywords: ['data collection', 'data analysis', 'qualitative research', 'quantitative research', 'methodology'],
+        downloads: 534,
+        uploadedBy: 'admin',
+        createdAt: new Date().toISOString()
       }
     ];
     
@@ -991,6 +1577,210 @@ export const initializeSampleData = (): void => {
           studentId: '1',
           supervisorId: '2',
           status: 'draft' as const
+        },
+        // Additional Technology Projects
+        {
+          title: 'Machine Learning Weather Prediction System',
+          description: 'ML model for accurate local weather forecasting using historical data.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Virtual Reality Training Simulator',
+          description: 'VR application for medical and engineering training simulations.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Facial Recognition Attendance System',
+          description: 'AI-powered attendance tracking using facial recognition technology.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'Social Media Sentiment Analysis Tool',
+          description: 'NLP application for analyzing public sentiment on social media platforms.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'Inventory Management System with RFID',
+          description: 'RFID-based inventory tracking and management system for warehouses.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Voice-Controlled Home Assistant',
+          description: 'Smart home assistant with voice recognition and IoT device control.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Fraud Detection System for Banking',
+          description: 'ML-based fraud detection system for online banking transactions.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'Image Recognition for Medical Diagnosis',
+          description: 'Deep learning system for medical image analysis and diagnosis.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'Real-time Chat Application with Video Calls',
+          description: 'Full-featured messaging app with video conferencing capabilities.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Food Delivery App with GPS Tracking',
+          description: 'Mobile app for food delivery with real-time GPS tracking.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Online Learning Platform for Kids',
+          description: 'Gamified learning platform designed for elementary school children.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'Cryptocurrency Portfolio Tracker',
+          description: 'Real-time cryptocurrency portfolio management and tracking app.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'Smart Mirror with AI Assistant',
+          description: 'Interactive smart mirror with weather, news, and personal assistant features.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Document Management System with OCR',
+          description: 'Document digitization and management system with OCR capabilities.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Music Streaming Platform',
+          description: 'Custom music streaming service with recommendation algorithms.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'Personal Fitness Tracker App',
+          description: 'Mobile fitness app with workout tracking and nutrition planning.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'Expense Tracking and Budget Manager',
+          description: 'Personal finance app for expense tracking and budget management.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Task Management and Productivity App',
+          description: 'Cross-platform productivity app with task management and team collaboration.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Recipe Sharing Social Network',
+          description: 'Social platform for sharing and discovering cooking recipes.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'QR Code Based Menu System',
+          description: 'Contactless restaurant menu system using QR codes.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'Language Learning Mobile App',
+          description: 'Interactive language learning app with speech recognition.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Event Planning and Management Platform',
+          description: 'Comprehensive platform for planning and managing events.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Job Search and Career Platform',
+          description: 'Job matching platform with AI-powered career recommendations.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'Travel Planning and Booking App',
+          description: 'Travel itinerary planning with hotel and flight booking integration.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'Meditation and Mindfulness App',
+          description: 'Mental wellness app with guided meditation and mood tracking.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
+        },
+        {
+          title: 'Home Security Monitoring System',
+          description: 'IoT-based home security system with mobile alerts.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'approved' as const
+        },
+        {
+          title: 'Pet Care and Health Tracker',
+          description: 'Mobile app for tracking pet health, vaccination, and care schedules.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'submitted' as const
+        },
+        {
+          title: 'Digital Art Gallery Platform',
+          description: 'Online platform for artists to showcase and sell digital artwork.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'draft' as const
+        },
+        {
+          title: 'News Aggregation and Analysis Platform',
+          description: 'AI-powered news aggregation with sentiment analysis and fact-checking.',
+          studentId: '1',
+          supervisorId: '2',
+          status: 'under-review' as const
         }
       ];
       
