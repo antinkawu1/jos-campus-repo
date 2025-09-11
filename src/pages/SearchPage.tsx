@@ -7,88 +7,42 @@ import { Logo } from "@/components/ui/logo";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, Download, ArrowLeft, BookOpen, Calendar, User } from "lucide-react";
+import { getMaterials, searchMaterials, incrementMaterialDownload } from "@/lib/localStorage";
+import type { Material } from "@/lib/localStorage";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
   const [filterType, setFilterType] = useState('all');
   const [filterYear, setFilterYear] = useState('all');
+  const [materials, setMaterials] = useState<Material[]>([]);
 
-  // Mock search results
-  const searchResults = [
-    {
-      id: 1,
-      title: "Advanced Data Structures and Algorithms in Computer Science",
-      author: "Dr. Johnson Smith",
-      type: "Book",
-      year: "2023",
-      abstract: "Comprehensive guide covering advanced algorithmic techniques, data structure optimization, and practical implementation strategies for modern software development.",
-      downloads: 234,
-      pages: 456,
-      publisher: "Academic Press",
-      tags: ["Computer Science", "Algorithms", "Data Structures"]
-    },
-    {
-      id: 2,
-      title: "Machine Learning Applications in Agricultural Development",
-      author: "Prof. Mary Adebayo",
-      type: "Journal Article",
-      year: "2024",
-      abstract: "This research explores the implementation of machine learning techniques in optimizing crop yield, pest detection, and sustainable farming practices in Nigerian agriculture.",
-      downloads: 156,
-      pages: 23,
-      publisher: "Journal of Agricultural Technology",
-      tags: ["Machine Learning", "Agriculture", "Sustainability"]
-    },
-    {
-      id: 3,
-      title: "Sustainable Development Goals and Economic Growth in Nigeria",
-      author: "Dr. Ibrahim Hassan",
-      type: "Research Paper",
-      year: "2023",
-      abstract: "Analysis of Nigeria's progress toward achieving the UN Sustainable Development Goals and their correlation with economic indicators and policy implementation.",
-      downloads: 89,
-      pages: 45,
-      publisher: "Development Studies Review",
-      tags: ["Economics", "Development", "Policy"]
-    },
-    {
-      id: 4,
-      title: "IoT-Based Smart City Infrastructure: A Nigerian Perspective",
-      author: "Dr. Sarah Okafor",
-      type: "Conference Paper",
-      year: "2024",
-      abstract: "Examination of Internet of Things implementation strategies for smart city development in Nigeria, focusing on infrastructure challenges and solutions.",
-      downloads: 67,
-      pages: 12,
-      publisher: "IEEE Conference Proceedings",
-      tags: ["IoT", "Smart Cities", "Infrastructure"]
-    },
-    {
-      id: 5,
-      title: "Climate Change Impact on Water Resources in Northern Nigeria",
-      author: "Prof. Ahmad Bello",
-      type: "Research Report",
-      year: "2023",
-      abstract: "Comprehensive study on the effects of climate change on water availability, quality, and management in the northern regions of Nigeria.",
-      downloads: 145,
-      pages: 78,
-      publisher: "Environmental Research Institute",
-      tags: ["Climate Change", "Water Resources", "Environment"]
-    }
-  ];
+  // Load materials from localStorage
+  useEffect(() => {
+    const allMaterials = getMaterials();
+    setMaterials(allMaterials);
+  }, []);
 
-  const filteredResults = searchResults.filter(result => {
-    const matchesSearch = result.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         result.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         result.abstract.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         result.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredResults = materials.filter(material => {
+    const matchesSearch = !searchQuery || 
+      material.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      material.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      material.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      material.keywords.some(keyword => keyword.toLowerCase().includes(searchQuery.toLowerCase()));
     
-    const matchesType = filterType === 'all' || result.type.toLowerCase().includes(filterType.toLowerCase());
-    const matchesYear = filterYear === 'all' || result.year === filterYear;
+    const matchesType = filterType === 'all' || material.type.toLowerCase().includes(filterType.toLowerCase());
+    const matchesYear = filterYear === 'all' || material.year.toString() === filterYear;
     
     return matchesSearch && matchesType && matchesYear;
   });
+
+  const handleDownload = (materialId: string) => {
+    incrementMaterialDownload(materialId);
+    // Update local state
+    setMaterials(prev => prev.map(m => 
+      m.id === materialId ? { ...m, downloads: m.downloads + 1 } : m
+    ));
+  };
 
   useEffect(() => {
     const query = searchParams.get('q');
@@ -231,51 +185,50 @@ const SearchPage = () => {
             </Card>
           ) : (
             <div className="space-y-4">
-              {filteredResults.map((result) => (
-                <Card key={result.id} className="hover:shadow-university transition-all duration-300">
+              {filteredResults.map((material) => (
+                <Card key={material.id} className="hover:shadow-university transition-all duration-300">
                   <CardContent className="pt-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-xl font-semibold text-foreground">{result.title}</h3>
-                          <Badge variant="outline">{result.type}</Badge>
+                          <h3 className="text-xl font-semibold text-foreground">{material.title}</h3>
+                          <Badge variant="outline">{material.type}</Badge>
                         </div>
                         
                         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                           <span className="flex items-center gap-1">
                             <User className="h-4 w-4" />
-                            {result.author}
+                            {material.author}
                           </span>
                           <span className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
-                            {result.year}
+                            {material.year}
                           </span>
-                          <span>{result.pages} pages</span>
                           <span className="flex items-center gap-1">
                             <Download className="h-4 w-4" />
-                            {result.downloads} downloads
+                            {material.downloads} downloads
                           </span>
                         </div>
 
                         <p className="text-foreground mb-3 leading-relaxed">
-                          {result.abstract}
+                          {material.description}
                         </p>
 
                         <div className="flex flex-wrap gap-2 mb-4">
-                          {result.tags.map((tag, index) => (
+                          {material.keywords.map((keyword, index) => (
                             <Badge key={index} variant="secondary" className="text-xs">
-                              {tag}
+                              {keyword}
                             </Badge>
                           ))}
                         </div>
-
-                        <p className="text-sm text-muted-foreground">
-                          Published by: {result.publisher}
-                        </p>
                       </div>
 
                       <div className="flex flex-col gap-2 ml-6">
-                        <Button variant="university" size="sm">
+                        <Button 
+                          variant="university" 
+                          size="sm"
+                          onClick={() => handleDownload(material.id)}
+                        >
                           <Download className="h-4 w-4 mr-2" />
                           Download
                         </Button>
