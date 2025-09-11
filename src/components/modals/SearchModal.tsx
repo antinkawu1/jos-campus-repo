@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,17 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
   const [year, setYear] = useState("");
   const [results, setResults] = useState<Material[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+
+  // Initialize materials when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      const allMaterials = getMaterials();
+      console.log('Modal opened, available materials:', allMaterials.length);
+      if (allMaterials.length > 0) {
+        setResults(allMaterials.slice(0, 10)); // Show first 10 materials by default
+      }
+    }
+  }, [isOpen]);
 
   const handleSearch = async () => {
     setIsSearching(true);
