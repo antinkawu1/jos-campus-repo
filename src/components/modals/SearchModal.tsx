@@ -27,10 +27,15 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
     try {
       let searchResults: Material[] = [];
       
+      console.log('Search query:', query);
+      console.log('Available materials:', getMaterials().length);
+      
       if (query.trim()) {
         searchResults = searchMaterials(query);
+        console.log('Search results:', searchResults.length);
       } else {
         searchResults = getMaterials();
+        console.log('All materials:', searchResults.length);
       }
 
       // Apply filters
@@ -106,7 +111,7 @@ export const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
                   <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="book">Book</SelectItem>
                   <SelectItem value="journal">Journal</SelectItem>
-                  <SelectItem value="research paper">Research Paper</SelectItem>
+                  <SelectItem value="conference-paper">Conference Paper</SelectItem>
                   <SelectItem value="article">Article</SelectItem>
                   <SelectItem value="thesis">Thesis</SelectItem>
                 </SelectContent>
