@@ -8,8 +8,9 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthDialog } from "@/components/auth/AuthDialog";
 import { MessageModal } from "@/components/modals/MessageModal";
-import { getProjectsBySupervisor, getCitationsBySupervisor } from "@/lib/localStorage";
+import { getProjectsBySupervisor, getCitationsBySupervisor, saveProject } from "@/lib/localStorage";
 import type { Project, Citation } from "@/lib/localStorage";
+import { toast } from "@/hooks/use-toast";
 
 const StaffPortal = () => {
   const [showAuthDialog, setShowAuthDialog] = useState(false);
@@ -28,6 +29,26 @@ const StaffPortal = () => {
       setCitations(pendingCitations);
     }
   }, [user]);
+
+  const handleProjectAction = (projectId: string, action: 'approved' | 'rejected') => {
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
+
+    const updatedProject = {
+      ...project,
+      status: action as Project['status'],
+      updatedAt: new Date().toISOString()
+    };
+
+    saveProject(updatedProject);
+    setProjects(prev => prev.map(p => p.id === projectId ? updatedProject : p));
+    
+    toast({
+      title: `Project ${action}`,
+      description: `"${project.title}" has been ${action}.`,
+      variant: action === 'approved' ? 'default' : 'destructive'
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -105,9 +126,56 @@ const StaffPortal = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-8">
-                  <p className="text-muted-foreground">No projects assigned yet</p>
-                </div>
+                {projects.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="text-muted-foreground">No projects assigned yet</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {projects.map((project) => (
+                      <div key={project.id} className="border rounded-lg p-4 bg-card">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-foreground">{project.title}</h4>
+                            <p className="text-sm text-muted-foreground mt-1">{project.description}</p>
+                            <div className="flex items-center gap-2 mt-2">
+                              <Badge variant={
+                                project.status === 'approved' ? 'default' :
+                                project.status === 'rejected' ? 'destructive' :
+                                project.status === 'submitted' ? 'secondary' : 'outline'
+                              }>
+                                {project.status.replace('-', ' ')}
+                              </Badge>
+                              <span className="text-xs text-muted-foreground">
+                                {project.submittedAt ? `Submitted ${new Date(project.submittedAt).toLocaleDateString()}` : `Created ${new Date(project.createdAt).toLocaleDateString()}`}
+                              </span>
+                            </div>
+                          </div>
+                          {project.status === 'submitted' && (
+                            <div className="flex gap-2 ml-4">
+                              <Button 
+                                size="sm" 
+                                variant="default"
+                                onClick={() => handleProjectAction(project.id, 'approved')}
+                              >
+                                <CheckCircle className="h-4 w-4 mr-1" />
+                                Approve
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="destructive"
+                                onClick={() => handleProjectAction(project.id, 'rejected')}
+                              >
+                                <AlertTriangle className="h-4 w-4 mr-1" />
+                                Reject
+                              </Button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
             <Card>
